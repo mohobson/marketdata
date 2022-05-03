@@ -11,6 +11,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
+from postmarker.core import PostmarkClient
 
 def get_friday_after_next():
     today = datetime.date.today()
@@ -140,8 +141,40 @@ def sendgrid_email_with_attachment(toaddr, fromaddr, subject, filename, filepath
         print(response.body)
         print(response.headers)
     except Exception as e:
-        print('')
+        print('/nEMAIL NOT SENT')
         print(e.message)
+
+
+
+
+
+
+## Using Postmark bc SendGrid lost a customer 
+
+# Send an email with the Postmark Python library
+# Learn more -> https://postmarkapp.com/send-email/python
+
+def send_postmark_email(toaddr, fromaddr, subject, filename, filepath):
+    from dotenv import load_dotenv
+    load_dotenv()
+
+    # Create an instance of the Postmark client
+    postmark = PostmarkClient(server_token=os.getenv('POSTMARK_SERVER_API_TOKEN'))
+
+    # Send an email
+    postmark.emails.send(
+    From=fromaddr,
+    To=toaddr,
+    Subject=subject,
+    HtmlBody='Hello'
+    )
+
+send_postmark_email('mthobson@ncsu.edu', 'mthobson@ncsu.edu', 'subject', 'filename', 'filepath')
+
+
+
+
+
 
 
 
