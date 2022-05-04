@@ -11,7 +11,9 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
-from postmarker.core import PostmarkClient
+
+# # if I need to use Postmark
+# from postmarker.core import PostmarkClient
 
 def get_friday_after_next():
     today = datetime.date.today()
