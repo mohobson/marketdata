@@ -76,17 +76,14 @@ def main():
     toaddr = os.getenv('toaddr')
     fromaddr = os.getenv('fromaddr')
     
-    toaddr2 = os.getenv('toaddr2')
-    fromaddr2 = os.getenv('fromaddr2')
-    
     try:
         functions.sendgrid_email_with_attachment(toaddr, fromaddr, subject, filename, filepath)
-        functions.send_postmark_email(toaddr2, fromaddr2, subject, filename, filepath)
+        # functions.send_postmark_email(toaddr2, fromaddr2, subject, filename, filepath)
         # functions.send_email_with_attachment(toaddr, subject, filename, filepath)
-    
+
     except:
         print('NO EMAIL SENT')
-    
+
     print(put_df)
 
     # remove charts

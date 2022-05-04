@@ -144,39 +144,27 @@ def sendgrid_email_with_attachment(toaddr, fromaddr, subject, filename, filepath
         print('/nEMAIL NOT SENT')
         print(e.message)
 
+# ## Basic Layout for using Postmark if needed 
 
+# # Send an email with the Postmark Python library
+# # Learn more -> https://postmarkapp.com/send-email/python
 
+# def send_postmark_email(toaddr, fromaddr, subject, filename, filepath):
+#     from dotenv import load_dotenv
+#     load_dotenv()
 
+#     # Create an instance of the Postmark client
+#     postmark = PostmarkClient(server_token=os.getenv('POSTMARK_SERVER_API_TOKEN'))
 
+#     # Send an email
+#     postmark.emails.send(
+#     From=fromaddr,
+#     To=toaddr,
+#     Subject=subject,
+#     HtmlBody='Hello'
+#     )
 
-## Using Postmark bc SendGrid lost a customer 
-
-# Send an email with the Postmark Python library
-# Learn more -> https://postmarkapp.com/send-email/python
-
-def send_postmark_email(toaddr, fromaddr, subject, filename, filepath):
-    from dotenv import load_dotenv
-    load_dotenv()
-
-    # Create an instance of the Postmark client
-    postmark = PostmarkClient(server_token=os.getenv('POSTMARK_SERVER_API_TOKEN'))
-
-    # Send an email
-    postmark.emails.send(
-    From=fromaddr,
-    To=toaddr,
-    Subject=subject,
-    HtmlBody='Hello'
-    )
-
-send_postmark_email('mthobson@ncsu.edu', 'mthobson@ncsu.edu', 'subject', 'filename', 'filepath')
-
-
-
-
-
-
-
+# send_postmark_email('mthobson@ncsu.edu', 'mthobson@ncsu.edu', 'subject', 'filename', 'filepath')
 
 def send_email_with_attachment(toaddr, subject, filename, filepath):
     from dotenv import load_dotenv
