@@ -32,14 +32,18 @@ def cash_secured_put(tickers):
                 elif float(chance_of_profit_short) > 0.90:
                     pass_or_fail = 'fail'
                 open_interest = put['open_interest']
+                volume = put['volume']
                 if float(open_interest) < 100.0:
+                    pass_or_fail = 'fail'
+                if float(volume==0.0):
                     pass_or_fail = 'fail'
 
                 d['chain_symbol'] = put['chain_symbol']
                 d['price'] = price_dict[put['chain_symbol']][0]
                 d['expiration_date'] = put['expiration_date']
                 d['earnings_coming_up'] = functions.get_upcoming_earnings(chain_symbol)
-                d['volume'] = put['volume']
+                d['volume'] = volume
+                d['open_interest'] = open_interest
                 d['strike_price'] = put['strike_price']
                 d['type_'] = put['type']
                 d['chance_of_profit_short'] = put['chance_of_profit_short']
@@ -57,7 +61,7 @@ def cash_secured_put(tickers):
                 
 
                 if pass_or_fail == 'pass': # if the put option passes my filters, append to list
-                    print('\n......................................')
+                    # print('\n......................................')
                     put_data.append(d)
         except:
             pass
