@@ -15,10 +15,10 @@ from email import encoders
 # # if I need to use Postmark
 # from postmarker.core import PostmarkClient
 
-def get_friday_after_next():
+def get_third_friday(): # modified to two fridays from next
     today = datetime.date.today()
-    friday_after_next = today + datetime.timedelta((4-today.weekday()) % 7) + datetime.timedelta(7)
-    return friday_after_next
+    third_friday = today + datetime.timedelta((4-today.weekday()) % 7) + datetime.timedelta(7) + datetime.timedelta(7)
+    return third_friday
 
 def get_upcoming_earnings(ticker):
     earnings = rs.stocks.get_earnings(ticker, info=None) # gather earnings data

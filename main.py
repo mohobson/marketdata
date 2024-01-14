@@ -68,7 +68,7 @@ def main():
         option_positions_df.to_excel(writer, sheet_name='Option Positions')
         stock_positions_df.to_excel(writer, sheet_name='Stock Positions')
         signal_df.to_excel(writer, sheet_name='Buy or Sell Signals')
-        put_df.to_excel(writer, sheet_name=str(functions.get_friday_after_next())+' CSP')
+        put_df.to_excel(writer, sheet_name=str(functions.get_third_friday())+' CSP')
 
     # send email with Excel file
     subject = 'Robinhood Report'

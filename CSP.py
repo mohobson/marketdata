@@ -13,7 +13,7 @@ def cash_secured_put(tickers):
     cheap_tickers = []
     put_data = []
     price_dict = {}
-    expiration_date = str(functions.get_friday_after_next())
+    expiration_date = str(functions.get_third_friday())
     for ticker in tickers: #iterate thru top 100 tickers on Robinhood
         price = rs.stocks.get_latest_price(ticker,priceType=None,includeExtendedHours=True) # get the latest price for each ticker
         if float(price[0]) < 15.0: # if the latest price is less than $15, add it to my list
