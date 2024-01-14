@@ -64,11 +64,32 @@ def main():
 
     # use ExcelWriter to write to different sheets
     filename = 'robinhood.xlsx'
-    with pd.ExcelWriter(filename) as writer:
+    with pd.ExcelWriter(filename, engine='openpyxl') as writer:
         option_positions_df.to_excel(writer, sheet_name='Option Positions')
         stock_positions_df.to_excel(writer, sheet_name='Stock Positions')
         signal_df.to_excel(writer, sheet_name='Buy or Sell Signals')
         put_df.to_excel(writer, sheet_name=str(functions.get_third_friday())+' CSP')
+
+        # Get the xlsxwriter workbook and worksheet objects
+        workbook = writer.book
+        for sheet_name in writer.sheets:
+            worksheet = writer.sheets[sheet_name]
+
+            # Iterate through each column and set the width based on the maximum content length
+            for i, col in enumerate(worksheet.columns):
+                max_len = 3
+                column = col[0].column_letter  # Get the column name
+                for cell in col:
+                    try:
+                        if len(str(cell.value)) > max_len:
+                            max_len = len(cell.value)
+                    except:
+                        pass
+                adjusted_width = (max_len + 2)
+                worksheet.column_dimensions[column].width = adjusted_width
+
+        # Save the workbook to apply column width changes
+        writer.save()
 
     # send email with Excel file
     subject = 'Robinhood Report'
