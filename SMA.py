@@ -175,8 +175,11 @@ def calcSMA(ticker, N1, N2):
     ax1.plot(plot_rolling_mean['y'], label = 'SMA ' + str(N1) + ' (' + str(N1_moving_aves[-1]) + ')')
     ax1.plot(plot_rolling_mean2['y'], label = 'SMA ' + str(N2) + ' (' + str(N2_moving_aves[-1]) + ')')
     # ax1.set_xticks(np.arange(1, 10))
+
+    stock_name = rs.get_name_by_symbol(ticker)
+
     plt.legend(loc = 'upper left')
-    plt.title(str(ticker) + '\n (' + str(closeDate[-1]) + ')', loc='center')
+    plt.title(str(ticker) + ' - ' + str(stock_name) + '\n (' + str(closeDate[-1]) + ')', loc='center')
     
     for d in list1:
         if d['signal'] == 'buy' or d['signal'] == 'mega buy':
