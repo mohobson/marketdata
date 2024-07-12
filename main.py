@@ -101,6 +101,7 @@ def main():
         functions.sendgrid_email_with_attachment(toaddr, fromaddr, subject, filename, filepath)
         # functions.send_postmark_email(toaddr2, fromaddr2, subject, filename, filepath)
         # functions.send_email_with_attachment(toaddr, subject, filename, filepath)
+        print('\nEMAIL SENT\n')
 
     except:
         print('NO EMAIL SENT')
