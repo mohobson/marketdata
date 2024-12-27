@@ -143,7 +143,7 @@ def sendgrid_email_with_attachment(toaddr, fromaddr, subject, filename, filepath
         print(response.body)
         print(response.headers)
     except Exception as e:
-        print('/nEMAIL NOT SENT')
+        print('\nEMAIL NOT SENT')
         print(e.message)
 
 # ## Basic Layout for using Postmark if needed 
