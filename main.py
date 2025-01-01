@@ -89,7 +89,8 @@ def main():
                 worksheet.column_dimensions[column].width = adjusted_width
 
         # Save the workbook to apply column width changes
-        writer.save()
+        # writer.save() # .save() function was removed from library - change to .close()
+        # writer.close()
 
     # send email with Excel file
     subject = 'Robinhood Report'
